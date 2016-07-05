@@ -4,14 +4,30 @@ import requests
 from bs4 import BeautifulSoup
 # Create your views here.
 
-def player_stats_view():
+def get_url_view(request): #change name
     hostname = 'http://www.nfl.com'
-    content = requests.get('http://www.nfl.com/players/search?category=name&filter=travelle+wharton&playerType=historical')
-
+    player_name = request.GET.get('name') or 'brees'
+    player_type = request.GET.get('historical') or 'current'
+    content = requests.get(hostname + '/players/search?category=name&filter={}&playerType={}'.format(player_name, player_type)).text
+    souper = BeautifulSoup(content, 'html.parser')
+    player_url = hostname + (souper.find(id='result').a.attrs['href'])
+    content = requests.get(player_url)
     souper = BeautifulSoup(content.text, 'html.parser')
-    player_name = souper.find(class_='tbdy').a.text
-    player_url = hostname + souper.find(class_='tbdy').a.attrs['href']
-    return player_name, player_url
+    player_bio = str(souper.find(id='player-profile-wrapper'))
+    player_stats = str(souper.find(id='player-stats-wrapper'))
+
+    return render(request, 'index.html', {'player_bio': player_bio, 'player_stats':player_stats})
+
+
+
+#def stats_scraping_view(request):
+    #name = request.GET.get('name')
+    #curr_hist = request.GET.get('curr_hist')
+    #print(name, curr_hist)
+    #player_url = get_url_view(name)
+    #return render(request, 'index.html', {} )
+
+
 
 # def get_temps(city):
 #     content = requests.get("https://www.wunderground.com/cgi-bin/findweather/getForecast?query=" + city).text

@@ -6,15 +6,15 @@
   </head>
   <body>
     <form class="" action="">
-      <input type="text" name="name" value="">
+      Search Name: <input type="text" name="name" value="">
+      Historical Player? <input type="checkbox" name="historical" value="historical">
       <input type="submit" value="Search">
 
     </form>
-    <h1>{{city}}</h1>
     {% autoescape off %}
-    Player {{player_name}}
-    <br>
-    {{player_url}}
+    {{player_bio}}
+    <hr>
+    {{player_stats}}
     {% endautoescape %}
   </body>
 </html>
