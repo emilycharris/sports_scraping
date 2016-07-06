@@ -1,0 +1,14 @@
+#player-bio {
+border-bottom: 5px
+}
+
+.player-name {
+  font-size: 65px;
+  border-bottom: 5px;
+
+}
+
+.player-number {
+  font-size: 35px;
+  border-bottom: 5px;
+}

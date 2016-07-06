@@ -1,20 +1,64 @@
+{% load staticfiles %}
+
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Player Stats</title>
+    <link rel="stylesheet" href='{% static "main/css/bootstrap.css" %}' media="screen" title="bootstrap css" charset="utf-8">
+   <link rel="stylesheet" href='{% static "main/css/main.css" %}' media="screen" charset="utf-8">
   </head>
   <body>
-    <form class="" action="">
-      Search Name: <input type="text" name="name" value="">
-      Historical Player? <input type="checkbox" name="historical" value="historical">
-      <input type="submit" value="Search">
+    <div class="container">
 
-    </form>
-    {% autoescape off %}
-    {{player_bio}}
-    <hr>
-    {{player_stats}}
-    {% endautoescape %}
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <form class="" action="">
+                  <p>
+                      <input type="text" name="name" class="form-control" placeholder="Search by Player Name">
+                      <input type="submit" class="btn btn-default" value="Search">
+                  </p>
+                <div class="">
+                <input type="checkbox" name="historical" value="historical">  <em>Check here if this player is no longer an active NFL player</em>
+                </div>
+                </form>
+              </div>
+            </form>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+
+
+
+
+
+
+
+
+
+
+
+      {% autoescape off %}
+      {{player_bio}}
+      <hr>
+      {{player_stats}}
+      {% endautoescape %}
+    </div>
   </body>
 </html>
